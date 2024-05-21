@@ -1,0 +1,60 @@
+{% load static %}
+{% load menu %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.2/bootstrap-icons-1.11.3/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.2/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search-group.css' %}">
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+<div class="top-bar">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-between">
+        <div class="navbar-nav">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'site-logo.jpg' %}" width="40px" height="30px" alt="Logo" class="d-inline-block align-text-top">
+                {{ request.crc_user.name }}的个人网站
+            </a>
+        </div>
+        <div class="navbar-nav dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{% static 'user_logo.jpg' %}" width="30px" height="30px" alt="Logo" class="d-inline-block align-text-top">
+                个人中心
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'logout' %}">注销登录</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="side-bar">
+    <div class="menu-left">
+        {% menu request %}
+    </div>
+</div>
+<div class="content">
+    <div class="nav-path">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {% for path in request.crc_user.path_list %}
+                    <li class="breadcrumb-item {{ path.class }}"><a href="{{ path.url }}">{{ path.text}}</a></li>
+                {% endfor %}
+            </ol>
+        </nav>
+    </div>
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'bootstrap-5.3.2/js/bootstrap.bundle.min.js' %}"></script>
+{#<script src="{% static 'bootstrap-5.3.2/js/bootstrap.bundle.js' %}"></script>#}
+{% block js %}
+{% endblock %}
+</html>

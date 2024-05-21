@@ -1,0 +1,53 @@
+.top-bar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background-color: whitesmoke;
+}
+
+.side-bar{
+    position: absolute;
+    left: 0;
+    top: 80px;
+    bottom: 0;
+    width: 300px;
+    background-color: ivory;
+}
+
+.content{
+    position: absolute;
+    left: 300px;
+    top: 80px;
+    right: 0;
+    bottom: 0;
+    overflow: scroll;
+}
+
+.menu-item{
+    list-style: none;
+}
+
+.menu-item li{
+    padding-top: 5px;
+}
+
+.menu-item a{
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.chosen{
+    border-left: 5px solid yellowgreen;
+}
+
+.nav-path{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.nav-path li a{
+    text-decoration: none;
+    font-size: 15px;
+}

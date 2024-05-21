@@ -1,0 +1,81 @@
+{% extends 'home.html' %}
+{% load static %}
+{% load privilege %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/customer.css' %}">
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            {% add_privilege request 'customer_add' %}
+            <form class="d-flex" role="search" method="get">
+                <input class="form-control me-2" name="keyword" type="search" value="{{ keyword }}" placeholder="请输入关键字" aria-label="Search">
+                <button class="btn btn-outline-success" style="white-space: nowrap" type="submit">搜索</button>
+            </form>
+        </div>
+    </nav>
+    <div>
+        <table class="table table-bordered table-hover table-prior">
+            <thead><tr>
+                <th scope="col" class="col-1">ID</th>
+                <th scope="col" class="col-1">用户名</th>
+                <th scope="col" class="col-1">手机号</th>
+                <th scope="col" class="col-1">级别</th>
+                <th scope="col" class="col-1">余额</th>
+                <th scope="col" class="col-1">创建日期</th>
+                <th scope="col" class="col-1">交易记录</th>
+                <th scope="col" class="col-1">操作</th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            {% for row in pager.queryset %}
+                <tr row-id="{{ row.id }}" row-username="{{ row.username }}">
+                    <th scope="row">{{ row.id }}</th>
+                    <td>{{ row.username }}</td>
+                    <td>{{ row.phone }}</td>
+                    <td>{{ row.prior }}</td>
+                    <td>{{ row.balance }}</td>
+                    <td>{{ row.create_datetime|date:"Y/m/d H:i:s" }}</td>
+                    <td><a href="{% url 'customer_charge' pk=row.id %}" class="record-list">查看记录</a></td>
+                    <td>
+                        {% edit_privilege request 'customer_edit' pk=row.id %}
+                        {% delete_privilege request 'customer_delete' modal_id="deleteModal" %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <nav>
+            <ul class="pagination justify-content-center">
+                {{ pager.page_html_string }}
+            </ul>
+        </nav>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h1 class="modal-title fs-5" id="deleteModalLabel">警 告</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body bg-danger-subtle">
+        确定要删除?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="modal-delete-btn">删 除</button>
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">取 消</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/customer.js' %}"></script>
+{% endblock %}

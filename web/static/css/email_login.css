@@ -1,0 +1,51 @@
+.box{
+    width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+}
+
+.box .row{
+    margin-top: 10px;
+}
+
+.row > label{
+    font-weight: bold;
+}
+
+#id_role{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+#id_role li{
+    display: inline-block;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.btn-bottom{
+    justify-content: space-between;
+}
+
+#account-login{
+    margin-top: 8px;
+}
+
+#account-login a{
+    text-decoration: none;
+}
+
+.field-error{
+    position: absolute;
+    padding-left: 100px;
+    color: red;
+    font-size: 1em;
+}
+
+.__all__-error{
+    position: absolute;
+    color: red;
+    padding-left: 100px;
+    font-size: 18px;
+}

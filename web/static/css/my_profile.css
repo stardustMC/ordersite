@@ -1,0 +1,14 @@
+.box{
+    top: 10px;
+    left: 10px;
+    width: 60%;
+}
+
+.input-group > .input-group-text{
+    width: 200px;
+    font-weight: bold;
+}
+
+.card-body > .input-group{
+    margin-top: 40px;
+}

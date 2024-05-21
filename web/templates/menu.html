@@ -1,0 +1,24 @@
+<div class="accordion" id="accordionPanelsStayOpenExample">
+    {% for item in menu %}
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{ item.badge }}"
+                        aria-expanded="true" aria-controls="{{ item.badge }}">
+                    {{ item.text}}
+                    <span class="badge bg-secondary">{{ item.badge }}</span>
+                </button>
+            </h2>
+            <div id="{{ item.badge }}" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                    <ul class="menu-item">
+                        {% for child in item.children %}
+                            <li class="{{ child.class }}">
+                                <a href="{{ child.url }}">{{ child.text }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

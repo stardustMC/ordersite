@@ -1,0 +1,33 @@
+.box{
+    width: 600px;
+    margin: 100px auto;
+    padding: 20px 50px;
+}
+
+.box .row{
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.row > label{
+    font-weight: bold;
+}
+
+.bottom-span{
+    margin-top: 20px;
+}
+
+.field-error{
+    position: absolute;
+    padding-left: 100px;
+    color: red;
+    font-size: 1em;
+    bottom: -30px;
+}
+
+.__all__-error{
+    position: absolute;
+    color: red;
+    padding-left: 100px;
+    font-size: 18px;
+}

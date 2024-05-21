@@ -1,0 +1,68 @@
+{% extends 'home.html' %}
+{% load static %}
+{% load privilege %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/price.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div>
+        {% add_privilege request 'price_add' %}
+    </div>
+    <div>
+        <table class="table table-bordered table-hover table-prior">
+            <thead><tr>
+                <th scope="col" class="col-1">ID</th>
+                <th scope="col" class="col-1">播放量</th>
+                <th scope="col" class="col-1">价格</th>
+                <th scope="col" class="col-1">操作</th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            {% for row in pager.queryset %}
+                <tr row-id="{{ row.id }}" row-count="{{ row.count }}" row-price="{{ row.price }}">
+                    <th scope="row">{{ row.id }}</th>
+                    <td>{{ row.count }}</td>
+                    <td>{{ row.price }}</td>
+                    <td>
+                        {% edit_privilege request 'price_edit' pk=row.id %}
+                        {% delete_privilege request 'price_delete' modal_id="deleteModal" %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <nav>
+            <ul class="pagination justify-content-center">
+                {{ pager.page_html_string }}
+            </ul>
+        </nav>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h1 class="modal-title fs-5" id="deleteModalLabel">警 告</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body bg-danger-subtle">
+        确定要删除?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="modal-delete-btn">删 除</button>
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" id="modal-cancel-btn">取 消</button>
+          <span class="modal-error-span"></span>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/price.js' %}"></script>
+{% endblock %}
