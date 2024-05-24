@@ -121,7 +121,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    '/web/static/',
+    os.path.join(BASE_DIR, 'web/static'),
 ]
 
 # Default primary key field type
@@ -244,6 +244,7 @@ CRC_PERMISSION = {
 REDIS_QUEUE_NAME = "CRC_TASK_KEY"
 
 try:
-    from local_settings import *
+    from .local_settings import *
+    print(STATIC_ROOT)
 except ImportError as e:
     pass

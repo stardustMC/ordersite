@@ -9,25 +9,31 @@
 </head>
 <body>
 <div class="box border border-secondary">
-    <div class="row"><h3 style="text-align: center;">邮 箱 登 录</h3></div>
-    {% for field in form %}
-        <div class="row">
-            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-            <span class="{{ field.name }}-error field-error">{{ field.errors.0 }}</span>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="row"><h3 style="text-align: center;">邮 箱 登 录</h3></div>
+        {% for field in form %}
+            <div class="row">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                <span class="{{ field.name }}-error field-error">{{ field.errors.0 }}</span>
+            </div>
+            <div class="input-group">
+                {{ field }}
+                {% if field.name == 'code' %}
+                    <button class="btn btn-outline-secondary" type="button" id="send-btn">发送验证码</button>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <div class="row btn-bottom">
+            <div class="col-auto">
+                <button id="login-btn" type="button" class="btn btn-primary">登 录</button>
+            </div>
+            <div id="account-login" class="col-auto"><a href="{% url 'login' %}" class="link-primary">用 户 名 登 录</a>
+            </div>
+            <span class="__all__-error">{{ form.errors.0 }}</span>
+            <span class="clearfix"></span>
         </div>
-        <div class="input-group">
-            {{ field }}
-            {% if field.name == 'code' %}
-                <button class="btn btn-outline-secondary" type="button" id="send-btn">发送验证码</button>
-            {% endif %}
-        </div>
-    {% endfor %}
-    <div class="row btn-bottom">
-        <div class="col-auto"><button id="login-btn" type="button" class="btn btn-primary">登 录</button></div>
-        <div id="account-login" class="col-auto"><a href="{% url 'login' %}" class="link-primary">用 户 名 登 录</a></div>
-        <span class="__all__-error">{{ form.errors.0 }}</span>
-        <span class="clearfix"></span>
-    </div>
+    </form>
 </div>
 </body>
 <script src="{% static 'js/jquery.js' %}"></script>
