@@ -13,6 +13,7 @@ django.setup()
 from web import models
 from utils.encryption import md5_encrypt
 
+
 # initialize prior
 prior_count = 5
 for i in range(prior_count):

@@ -63,7 +63,7 @@ def my_order_add(request):
     # crawl old video view count
     status, origin_view_count = get_origin_view_count(form.cleaned_data["url"])
     if not status:
-        form.add_error('url', "视频地址无法解析")
+        form.add_error('url', "视频地址无法解析,仅支持央视频")
         return render(request, 'form.html', context={'form': form})
 
     # calculate order price

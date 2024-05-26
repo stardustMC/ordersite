@@ -43,7 +43,7 @@ def price_add(request):
         if not form.is_valid():
             return render(request, 'form.html', context={'form': form})
         form.save()
-        return redirect(reverse(viewname='price_add'))
+        return redirect(reverse(viewname='price'))
 
 
 def price_edit(request, pk):
