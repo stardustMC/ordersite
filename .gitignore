@@ -162,5 +162,5 @@ cython_debug/
 .idea/
 
 # database migrations
-/web/migrations/*.py
+*/migrations/*.py
 !*/migrations/__init__.py
