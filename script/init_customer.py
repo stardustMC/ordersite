@@ -32,6 +32,6 @@ for i in range(50):
         phone='1' + str(randint(1000000000, 9999999999)),
         email=str(randint(1000000, 9999999)) + '@' + ['qq.com', '163.com', 'gmail.com', '126.com'][randint(0, 3)],
         balance=5 * randint(20, 100),
-        prior_id=randint(1, 10),
+        prior_id=randint(1, 3),
         creator_id=1,
     )
