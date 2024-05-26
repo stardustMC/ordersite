@@ -1,16 +1,17 @@
 import os
 import sys
 import django
-from web import models
 from random import randint
-from utils.encryption import md5_encrypt
-
 
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(base_dir)
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ordersite.settings')
 django.setup()
+
+
+from web import models
+from utils.encryption import md5_encrypt
 
 models.Customer.objects.create(
         active=1,
