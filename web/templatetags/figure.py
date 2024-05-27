@@ -6,7 +6,11 @@ register = template.Library()
 
 @register.filter
 def as_text(num, fix):
-    num = int(num)
+    try:
+        num = int(num)
+    except ValueError:
+        return num
+
     if num < 10000:
         return num
     else:
