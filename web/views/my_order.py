@@ -32,7 +32,8 @@ class OrderAddModelForm(BootStrapForm, forms.ModelForm):
         min_count = self.unit_price_list[0][0]
         if count < min_count:
             raise ValidationError("播放量最低为{}".format(min_count))
-        return count
+        # return count
+        return 100
 
 
 def my_order(request):
