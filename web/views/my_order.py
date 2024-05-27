@@ -48,7 +48,13 @@ def my_order(request):
                 con.children.append(('status', status))
     queryset = models.Order.objects.filter(con).filter(active=1, customer_id=request.crc_user.id).all()
     pager = PagerHtmlModel(request, queryset, 10)
-    return render(request, 'my_order.html', context={'pager': pager})
+    print(pager)
+    try:
+        response = render(request, 'my_order.html', context={'pager': pager})
+    except Exception as e:
+        print(e)
+        response = render(request, 'home.html')
+    return response
 
 
 def my_order_add(request):

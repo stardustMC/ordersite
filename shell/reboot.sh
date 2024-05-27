@@ -8,7 +8,7 @@ sleep 0.5
 
 echo -e '\n--------------------going to close--------------------'
 
-ps -ef |grep uwsgi_ordersite.ini | grep -v grep | awk '{print $2}' | xargs kill -9
+ps -ef |grep uwsgi_ordersite.ini | grep -v grep | awk '{print $2}' | xargs -I{} kill -9 {}
 
 sleep 0.5
 
