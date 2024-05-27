@@ -29,11 +29,11 @@ class OrderAddModelForm(BootStrapForm, forms.ModelForm):
 
     def clean_count(self):
         count = self.cleaned_data.get('count')
-        min_count = self.unit_price_list[0][0]
-        if count < min_count:
-            raise ValidationError("播放量最低为{}".format(min_count))
-        # return count
-        return 100
+        if count < 1:
+            raise ValidationError("播放量必须是正数")
+        if count > 10:
+            raise ValidationError("播放量当前服务器仅支持10以下")
+        return count
 
 
 def my_order(request):
