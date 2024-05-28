@@ -197,3 +197,7 @@ def denied(request):
 
 def home(request):
     return render(request, 'home.html')
+
+
+def raw(request):
+    return redirect(reverse(viewname='login'))

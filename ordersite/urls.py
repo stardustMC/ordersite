@@ -17,6 +17,7 @@ from django.urls import path
 from web.views import account, customer, prior, charge, price, my_order, my_profile
 
 urlpatterns = [
+    path('', account.raw, name='raw'),
     path('home/', account.home, name='home'),
     path('login/', account.login, name='login'),
     path('logout/', account.logout, name='logout'),

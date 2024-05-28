@@ -23,7 +23,7 @@ class AuthMiddleware(MiddlewareMixin):
 
         user_data = request.session.get(settings.CRC_USER_SESSION_KEY)
         if not user_data:
-            redirect(settings.CRC_LOGIN_URL)
+            return redirect(settings.CRC_LOGIN_URL)
         request.crc_user = UserInfo(**json.loads(user_data))
 
     def process_view(self, request, callback, callback_args, callback_kwargs):
